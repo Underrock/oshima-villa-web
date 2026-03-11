@@ -55,7 +55,7 @@
       filter: blur(1.5px) saturate(0.8);
     }
 
-    /* ▼修正：黒い半透明フィルターの上に、白い線の木々のシルエットを重ねる */
+    /* ▼修正：波線の雲（SVGデータURL）を複数重ねる */
     .hero-overlay {
       position: absolute;
       top: 0;
@@ -63,31 +63,31 @@
       width: 100%;
       height: 100%;
       background-color: rgba(0, 0, 0, 0.4); /* 暗くする */
-      /* 白い線の木々のシルエット(SVGデータURL)を複数重ねる */
+      /* 白い波線の雲(SVGデータURL)を複数重ねる */
       background-image: 
-        /* 木製のシルエット 1 */
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M 50 10 L 50 100 M 50 30 Q 30 40, 45 50 Q 35 60, 50 70 Q 65 60, 55 50 Q 70 40, 50 30" stroke="white" stroke-width="0.3" fill="none"/></svg>'),
-        /* 木製のシルエット 2 (異なる形) */
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M 10 90 L 90 10 M 10 90 Q 20 70, 30 70 Q 40 70, 50 50 Q 60 30, 70 30" stroke="white" stroke-width="0.2" fill="none"/></svg>'),
-        /* 木製のシルエット 3 (さらに異なる形) */
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M 80 90 L 20 10 M 80 90 Q 70 70, 60 70 Q 50 70, 40 50 Q 30 30, 20 30" stroke="white" stroke-width="0.2" fill="none"/></svg>'),
+        /* 波線の雲 1 */
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M 20 50 Q 30 40, 40 50 Q 50 60, 60 50 Q 70 40, 80 50 Q 90 60, 100 50 L 100 100 L 0 100 Z" fill="none" stroke="white" stroke-width="0.3"/></svg>'),
+        /* 波線の雲 2 (異なる形) */
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M 10 30 Q 25 15, 40 30 Q 55 45, 70 30 Q 85 15, 100 30 L 100 100 L 0 100 Z" fill="none" stroke="white" stroke-width="0.3"/></svg>'),
+        /* 波線の雲 3 (さらに異なる形) */
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M 30 20 Q 45 10, 60 20 Q 75 30, 90 20 Q 105 10, 120 20 L 120 100 L 0 100 Z" fill="none" stroke="white" stroke-width="0.3"/></svg>'),
         /* ドットメッシュ（ガビガビ感隠し用） */
         radial-gradient(rgba(255, 255, 255, 0.3) 15%, transparent 15%);
       /* それぞれの背景の位置とサイズを調整して、まばらに配置する */
       background-position: 
-        10% 20%,  /* シルエット 1 */
-        80% 60%,  /* シルエット 2 */
-        40% 90%,  /* シルエット 3 */
+        15% 15%,  /* 雲 1 (左上) */
+        75% 75%,  /* 雲 2 (右下) */
+        90% 10%,  /* 雲 3 (右上) */
         0 0;      /* ドットメッシュ */
       background-size: 
-        200px 200px, /* シルエット 1 */
-        150px 150px, /* シルエット 2 */
-        180px 180px, /* シルエット 3 */
+        250px 250px, /* 雲 1 */
+        180px 180px, /* 雲 2 */
+        200px 200px, /* 雲 3 */
         3px 3px;     /* ドットメッシュ */
       background-repeat: 
-        no-repeat,   /* シルエット 1 */
-        no-repeat,   /* シルエット 2 */
-        no-repeat,   /* シルエット 3 */
+        no-repeat,   /* 雲 1 */
+        no-repeat,   /* 雲 2 */
+        no-repeat,   /* 雲 3 */
         repeat;      /* ドットメッシュ */
       z-index: 2;
     }
