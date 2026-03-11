@@ -55,7 +55,7 @@
       filter: blur(1.5px) saturate(0.8);
     }
 
-    /* ▼修正：波線の雲（SVGデータURL）を複数重ねる */
+    /* ▼修正：添付画像の雲を元にした、手書き風の白い線の雲（SVGデータURL）を複数重ねる */
     .hero-overlay {
       position: absolute;
       top: 0;
@@ -63,14 +63,14 @@
       width: 100%;
       height: 100%;
       background-color: rgba(0, 0, 0, 0.4); /* 暗くする */
-      /* 白い波線の雲(SVGデータURL)を複数重ねる */
+      /* 白い手書き風の雲(SVGデータURL)を複数重ねる */
       background-image: 
-        /* 波線の雲 1 */
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M 20 50 Q 30 40, 40 50 Q 50 60, 60 50 Q 70 40, 80 50 Q 90 60, 100 50 L 100 100 L 0 100 Z" fill="none" stroke="white" stroke-width="0.3"/></svg>'),
-        /* 波線の雲 2 (異なる形) */
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M 10 30 Q 25 15, 40 30 Q 55 45, 70 30 Q 85 15, 100 30 L 100 100 L 0 100 Z" fill="none" stroke="white" stroke-width="0.3"/></svg>'),
-        /* 波線の雲 3 (さらに異なる形) */
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M 30 20 Q 45 10, 60 20 Q 75 30, 90 20 Q 105 10, 120 20 L 120 100 L 0 100 Z" fill="none" stroke="white" stroke-width="0.3"/></svg>'),
+        /* 雲 1: 手書き風の洗練された波線の雲 */
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M10,60 C20,50 30,50 40,60 T60,60 T80,60 T100,60 L100,100 L0,100 Z" fill="none" stroke="white" stroke-width="0.3" opacity="0.4"/></svg>'),
+        /* 雲 2: 異なる形の波線の雲 */
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,40 C30,30 40,30 50,40 T70,40 T90,40 T110,40 L110,80 L0,80 Z" fill="none" stroke="white" stroke-width="0.3" opacity="0.3"/></svg>'),
+        /* 雲 3: さらに異なる形の波線の雲 */
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,20 C60,10 70,10 80,20 T100,20 T120,20 T140,20 L140,60 L0,60 Z" fill="none" stroke="white" stroke-width="0.3" opacity="0.2"/></svg>'),
         /* ドットメッシュ（ガビガビ感隠し用） */
         radial-gradient(rgba(255, 255, 255, 0.3) 15%, transparent 15%);
       /* それぞれの背景の位置とサイズを調整して、まばらに配置する */
@@ -204,7 +204,7 @@
     
     <div class="visual-grid">
       <div class="visual-item">
-        <img src="living_image.png?q=80&w=800&auto=format&fit=crop" alt="客室">
+        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=800&auto=format&fit=crop" alt="客室">
         <div class="visual-text">
           <h3 class="serif">静寂に包まれる空間</h3>
           <p>リノベーション済みの清潔な客室。推奨4名様、ソファベッドのご利用で最大6名様までゆったりとご滞在いただけます。森の気配を感じながら、深い眠りへ。</p>
