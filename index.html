@@ -13,9 +13,11 @@
     :root {
       --primary: #2c4a3e;
       --bg-color: #f9f9f8;
+      --bg-alt: #f4f1eb; /* 追加：セクションを区切るための温かい背景色 */
       --text-main: #37352f;
       --text-muted: #555450;
       --accent: #d99a5a;
+      --border-color: #e2decb; /* 追加：上品な枠線用の色 */
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -55,40 +57,21 @@
       filter: blur(1.5px) saturate(0.8);
     }
 
-    /* ▼修正：添付画像の雲を元にした、手書き風の白い線の雲（SVGデータURL）を複数重ねる */
     .hero-overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.4); /* 暗くする */
-      /* 白い手書き風の雲(SVGデータURL)を複数重ねる */
+      background-color: rgba(0, 0, 0, 0.35); 
       background-image: 
-        /* 雲 1: 手書き風の洗練された波線の雲 */
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M10,60 C20,50 30,50 40,60 T60,60 T80,60 T100,60 L100,100 L0,100 Z" fill="none" stroke="white" stroke-width="0.3" opacity="0.4"/></svg>'),
-        /* 雲 2: 異なる形の波線の雲 */
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,40 C30,30 40,30 50,40 T70,40 T90,40 T110,40 L110,80 L0,80 Z" fill="none" stroke="white" stroke-width="0.3" opacity="0.3"/></svg>'),
-        /* 雲 3: さらに異なる形の波線の雲 */
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,20 C60,10 70,10 80,20 T100,20 T120,20 T140,20 L140,60 L0,60 Z" fill="none" stroke="white" stroke-width="0.3" opacity="0.2"/></svg>'),
-        /* ドットメッシュ（ガビガビ感隠し用） */
-        radial-gradient(rgba(255, 255, 255, 0.3) 15%, transparent 15%);
-      /* それぞれの背景の位置とサイズを調整して、まばらに配置する */
-      background-position: 
-        15% 15%,  /* 雲 1 (左上) */
-        75% 75%,  /* 雲 2 (右下) */
-        90% 10%,  /* 雲 3 (右上) */
-        0 0;      /* ドットメッシュ */
-      background-size: 
-        250px 250px, /* 雲 1 */
-        180px 180px, /* 雲 2 */
-        200px 200px, /* 雲 3 */
-        3px 3px;     /* ドットメッシュ */
-      background-repeat: 
-        no-repeat,   /* 雲 1 */
-        no-repeat,   /* 雲 2 */
-        no-repeat,   /* 雲 3 */
-        repeat;      /* ドットメッシュ */
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60"><path d="M5 40 C10 25 25 25 30 35 C35 20 55 20 60 35 C65 25 80 25 90 35 C100 30 110 35 115 40" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" opacity="0.35"/></svg>'),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 60"><path d="M5 42 C15 35 25 32 35 40 C45 25 65 25 70 38 C80 28 100 30 110 38 C120 35 130 38 135 42" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" opacity="0.32"/></svg>'),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 50"><path d="M5 35 C12 28 20 28 25 33 C30 25 45 25 50 33 C60 28 70 30 80 35" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" opacity="0.25"/></svg>'),
+        radial-gradient(rgba(255, 255, 255, 0.25) 15%, transparent 15%);
+      background-position: 10% 20%, 85% 70%, 80% 15%, 0 0;
+      background-size: 180px 90px, 220px 95px, 140px 78px, 3px 3px;
+      background-repeat: no-repeat, no-repeat, no-repeat, repeat;
       z-index: 2;
     }
 
@@ -112,10 +95,23 @@
     }
 
     /* --- Sections --- */
-    section { padding: 80px 20px; max-width: 800px; margin: 0 auto; text-align: center; }
+    section { padding: 80px 20px; text-align: center; }
+    .section-inner { max-width: 800px; margin: 0 auto; }
     .section-title { font-size: 1.6rem; margin-bottom: 40px; line-height: 1.5; }
     
+    /* 追加：視線を誘導する上品な縦線 */
+    .vertical-line {
+      width: 1px;
+      height: 60px;
+      background-color: var(--primary);
+      margin: 0 auto 30px;
+      opacity: 0.4;
+    }
+
     .concept p { margin-bottom: 20px; font-size: 1rem; color: var(--text-muted); }
+
+    /* 追加：背景色を変えてのっぺり感を消す */
+    .bg-tint { background-color: var(--bg-alt); }
 
     .visual-grid {
       display: grid;
@@ -144,6 +140,15 @@
 
     @media (min-width: 768px) {
       .visual-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* 追加：施設概要をカード風に囲ってリッチに */
+    .info-box {
+      border: 1px solid var(--border-color);
+      padding: 40px 20px;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
     }
 
     /* --- Fixed CTA Button --- */
@@ -193,40 +198,49 @@
   </header>
 
   <section class="concept">
-    <h2 class="section-title serif"><span class="nowrap">15年の眠りを経て、</span><span class="nowrap">再び</span></h2>
-    <p><span class="nowrap">1975年に開業し、</span><span class="nowrap">静かに眠りについていた場所が</span><br>今、伊豆大島の森の中で目を覚ましました。</p>
-    <p><span class="nowrap">豪華な設備はありません。</span><br><span class="nowrap">あるのは、鳥の声、風の音、</span><span class="nowrap">そして満天の星空。</span></p>
-    <p><span class="nowrap">大切な家族や友人と、</span><span class="nowrap">ただ火を囲み、言葉を交わす。</span><br><span class="nowrap">何もしないという贅沢が、</span>ここにあります。</p>
+    <div class="section-inner">
+      <div class="vertical-line"></div>
+      <h2 class="section-title serif"><span class="nowrap">15年の眠りを経て、</span><span class="nowrap">再び</span></h2>
+      <p><span class="nowrap">1975年に開業し、</span><span class="nowrap">静かに眠りについていた場所が</span><br>今、伊豆大島の森の中で目を覚ましました。</p>
+      <p><span class="nowrap">豪華な設備はありません。</span><br><span class="nowrap">あるのは、鳥の声、風の音、</span><span class="nowrap">そして満天の星空。</span></p>
+      <p><span class="nowrap">大切な家族や友人と、</span><span class="nowrap">ただ火を囲み、言葉を交わす。</span><br><span class="nowrap">何もしないという贅沢が、</span>ここにあります。</p>
+    </div>
   </section>
 
-  <section class="experience">
-    <h2 class="section-title serif"><span class="nowrap">サルビア棟での</span><span class="nowrap">過ごし方</span></h2>
-    
-    <div class="visual-grid">
-      <div class="visual-item">
-        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=800&auto=format&fit=crop" alt="客室">
-        <div class="visual-text">
-          <h3 class="serif">静寂に包まれる空間</h3>
-          <p>リノベーション済みの清潔な客室。推奨4名様、ソファベッドのご利用で最大6名様までゆったりとご滞在いただけます。森の気配を感じながら、深い眠りへ。</p>
+  <section class="experience bg-tint">
+    <div class="section-inner">
+      <h2 class="section-title serif"><span class="nowrap">サルビア棟での</span><span class="nowrap">過ごし方</span></h2>
+      
+      <div class="visual-grid">
+        <div class="visual-item">
+          <img src="living_image.png" alt="客室">
+          <div class="visual-text">
+            <h3 class="serif">静寂に包まれる空間</h3>
+            <p>リノベーション済みの清潔な客室。推奨4名様、ソファベッドのご利用で最大6名様までゆったりとご滞在いただけます。森の気配を感じながら、深い眠りへ。</p>
+          </div>
         </div>
-      </div>
-      <div class="visual-item">
-        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop" alt="屋外BBQ">
-        <div class="visual-text">
-          <h3 class="serif">森に溶け込む音と火</h3>
-          <p>外の炊事場ではBBQをお楽しみいただけます。JBLの専用スピーカーから流れる音楽とともに、夜空の下で語らいの時間を。</p>
+        <div class="visual-item">
+          <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop" alt="屋外BBQ">
+          <div class="visual-text">
+            <h3 class="serif">森に溶け込む音と火</h3>
+            <p>外の炊事場ではBBQをお楽しみいただけます。ポータブルスピーカーから流れる音楽とともに、夜空の下で語らいの時間を。</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <section class="info" style="padding-bottom: 120px;">
-    <h2 class="section-title serif">施設概要</h2>
-    <div style="font-size: 0.95rem; color: var(--text-muted); text-align: left; display: inline-block; line-height: 2;">
-      <strong>施設名：</strong>大島ニュービラ（サルビア棟）<br>
-      <strong>定員：</strong>推奨4名様（最大6名様 ※ソファベッド利用）<br>
-      <strong>設備：</strong>屋外炊事場 / 無料Wi-Fi / 貸切BBQセット（JBLスピーカー付）<br>
-      <span style="font-size: 0.85rem; margin-top: 10px; display: inline-block;">※大自然に囲まれた環境のため、華美なアメニティは控えております。</span>
+    <div class="section-inner">
+      <div class="info-box">
+        <h2 class="section-title serif" style="margin-bottom: 25px;">施設概要</h2>
+        <div style="font-size: 0.95rem; color: var(--text-muted); text-align: left; display: inline-block; line-height: 2;">
+          <strong>施設名：</strong>大島ニュービラ（サルビア棟）<br>
+          <strong>定員：</strong>推奨4名様（最大6名様 ※ソファベッド利用）<br>
+          <strong>設備：</strong>屋外炊事場 / 無料Wi-Fi / 貸切BBQセット（食材お持ち込み）（貸し出しポータブルスピーカー付）<br>
+          <span style="font-size: 0.85rem; margin-top: 15px; display: inline-block; padding-top: 15px; border-top: 1px dashed var(--border-color);">※大自然に囲まれた環境のため、華美なアメニティは控えております。</span>
+        </div>
+      </div>
     </div>
   </section>
 
