@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>大島ニュービラ サルビア棟 | 森と眠る、心の再生</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
@@ -25,26 +26,52 @@
       overflow-x: hidden;
     }
 
-    /* ▼追加：変な位置で改行させないためのクラス */
     .nowrap { display: inline-block; }
-
     h1, h2, h3 { font-weight: normal; letter-spacing: 0.1em; color: var(--primary); }
-    /* ▼修正：読み込んだWebフォントを適用 */
     .serif { font-family: "Shippori Mincho", serif; font-weight: 500; } 
 
-    /* --- Hero Section --- */
+    /* --- Hero Section (動画背景仕様) --- */
     .hero {
       position: relative;
       width: 100vw;
       height: 100vh;
-      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
       color: #fff;
+      overflow: hidden; /* 動画のはみ出しを防ぐ */
     }
+
+    /* 背景動画の設定 */
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* 画面いっぱいに比率を保って埋める */
+      z-index: 1;
+    }
+
+    /* 文字を読みやすくするための黒い半透明フィルター */
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4); 
+      z-index: 2;
+    }
+
+    /* コンテンツを動画とフィルターの上に持ってくる */
+    .hero-content {
+      position: relative;
+      z-index: 3;
+    }
+
     .hero h1 {
       font-size: 2.2rem;
       letter-spacing: 0.15em;
@@ -63,7 +90,6 @@
     section { padding: 80px 20px; max-width: 800px; margin: 0 auto; text-align: center; }
     .section-title { font-size: 1.6rem; margin-bottom: 40px; line-height: 1.5; }
     
-    /* Concept */
     .concept p { margin-bottom: 20px; font-size: 1rem; color: var(--text-muted); }
 
     /* Visual Grid */
@@ -134,8 +160,12 @@
 <body>
 
   <header class="hero">
-    <h1 class="serif"><span class="nowrap">森と眠る、</span><span class="nowrap">心の再生</span></h1>
-    <p>大島ニュービラ - サルビア棟 -</p>
+    <video class="hero-video" src="Bg-movie.mp4" autoplay loop muted playsinline></video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="serif"><span class="nowrap">森と眠る、</span><span class="nowrap">心の再生</span></h1>
+      <p>大島ニュービラ - サルビア棟 -</p>
+    </div>
   </header>
 
   <section class="concept">
@@ -177,7 +207,7 @@
   </section>
 
   <div class="fixed-cta">
-    <a href="#" class="btn-reserve" target="_blank">空室を確認・予約する</a>
+    <a href="https://www.airbnb.jp/rooms/1602063410123886296?guests=1&adults=1&s=67&unique_share_id=14cfd945-be5d-4ae1-af4f-f2210d19e2ae" class="btn-reserve" target="_blank" rel="noopener noreferrer">空室を確認・予約する(Airbnb)</a>
   </div>
 
   <footer>
