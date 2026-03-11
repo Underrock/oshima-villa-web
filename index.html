@@ -3,36 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>大島ニュービラ | 森と眠る、心の再生</title>
+  <title>大島ニュービラ サルビア棟 | 森と眠る、心の再生</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+  
   <style>
-    /* --- Base Variables & Reset --- */
     :root {
-      --primary: #2c4a3e; /* 深い森の緑 */
-      --bg-color: #f9f9f8; /* 温かみのあるオフホワイト */
+      --primary: #2c4a3e;
+      --bg-color: #f9f9f8;
       --text-main: #37352f;
-      --text-muted: #73726c;
-      --accent: #d99a5a; /* 焚き火のようなアクセント */
+      --text-muted: #555450;
+      --accent: #d99a5a;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", serif;
+      font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
       color: var(--text-main);
       background-color: var(--bg-color);
       line-height: 1.8;
       overflow-x: hidden;
     }
 
-    /* --- Typography --- */
+    /* ▼追加：変な位置で改行させないためのクラス */
+    .nowrap { display: inline-block; }
+
     h1, h2, h3 { font-weight: normal; letter-spacing: 0.1em; color: var(--primary); }
-    .serif { font-family: "Shippori Mincho", "Yu Mincho", serif; } /* 見出しは明朝体風で情緒を */
+    /* ▼修正：読み込んだWebフォントを適用 */
+    .serif { font-family: "Shippori Mincho", serif; font-weight: 500; } 
 
     /* --- Hero Section --- */
     .hero {
       position: relative;
       width: 100vw;
       height: 100vh;
-      /* 背景に美しい森や外観の写真を（今はダミーのプレースホルダー） */
-      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -41,61 +46,60 @@
       color: #fff;
     }
     .hero h1 {
-      font-size: 2.5rem;
-      letter-spacing: 0.2em;
-      margin-bottom: 20px;
+      font-size: 2.2rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 15px;
       color: #fff;
-      text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+      line-height: 1.4;
     }
     .hero p {
-      font-size: 1.1rem;
+      font-size: 1rem;
       letter-spacing: 0.15em;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
     }
 
     /* --- Sections --- */
-    section { padding: 100px 20px; max-width: 800px; margin: 0 auto; text-align: center; }
-    .section-title { font-size: 1.8rem; margin-bottom: 40px; }
+    section { padding: 80px 20px; max-width: 800px; margin: 0 auto; text-align: center; }
+    .section-title { font-size: 1.6rem; margin-bottom: 40px; line-height: 1.5; }
     
     /* Concept */
-    .concept p { margin-bottom: 20px; font-size: 1.05rem; }
+    .concept p { margin-bottom: 20px; font-size: 1rem; color: var(--text-muted); }
 
     /* Visual Grid */
     .visual-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 40px;
-      margin-top: 60px;
+      gap: 30px;
+      margin-top: 40px;
     }
     .visual-item {
       position: relative;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
     }
     .visual-item img {
       width: 100%;
-      height: 300px;
+      height: 250px;
       object-fit: cover;
       display: block;
-      transition: transform 0.5s ease;
     }
-    .visual-item:hover img { transform: scale(1.03); }
     .visual-text {
-      padding: 30px 20px;
+      padding: 25px 20px;
       background: #fff;
     }
-    .visual-text h3 { font-size: 1.3rem; margin-bottom: 10px; }
-    .visual-text p { font-size: 0.95rem; color: var(--text-muted); }
+    .visual-text h3 { font-size: 1.2rem; margin-bottom: 10px; }
+    .visual-text p { font-size: 0.9rem; color: var(--text-muted); text-align: left; }
 
     @media (min-width: 768px) {
       .visual-grid { grid-template-columns: 1fr 1fr; }
     }
 
-    /* --- Fixed CTA Button (予約への導線) --- */
+    /* --- Fixed CTA Button --- */
     .fixed-cta {
       position: fixed;
-      bottom: 30px;
+      bottom: 25px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 100;
@@ -108,17 +112,13 @@
       color: #fff;
       text-decoration: none;
       text-align: center;
-      padding: 18px 0;
+      padding: 16px 0;
       border-radius: 50px;
-      font-size: 1.1rem;
-      font-weight: bold;
+      font-size: 1.05rem;
+      font-weight: 600;
       letter-spacing: 0.1em;
-      box-shadow: 0 10px 25px rgba(44, 74, 62, 0.4);
+      box-shadow: 0 10px 25px rgba(44, 74, 62, 0.5);
       transition: all 0.3s ease;
-    }
-    .btn-reserve:hover {
-      background-color: #1e352c;
-      transform: translateY(-2px);
     }
 
     /* --- Footer --- */
@@ -126,7 +126,7 @@
       background-color: var(--primary);
       color: #fff;
       text-align: center;
-      padding: 60px 20px 100px; /* 下部はCTAボタンと被らないよう広めに */
+      padding: 60px 20px 100px; 
     }
     footer p { font-size: 0.8rem; letter-spacing: 0.1em; opacity: 0.7; margin-bottom: 10px; }
   </style>
@@ -134,33 +134,33 @@
 <body>
 
   <header class="hero">
-    <h1 class="serif">森と眠る、心の再生</h1>
-    <p>Oshima New Villa</p>
+    <h1 class="serif"><span class="nowrap">森と眠る、</span><span class="nowrap">心の再生</span></h1>
+    <p>大島ニュービラ - サルビア棟 -</p>
   </header>
 
   <section class="concept">
-    <h2 class="section-title serif">15年の眠りを経て、再び</h2>
-    <p>1975年に開業し、静かに眠りについていた場所が<br>今、伊豆大島の森の中で目を覚ましました。</p>
-    <p>豪華な設備はありません。<br>あるのは、鳥の声、風の音、そして満天の星空。</p>
-    <p>大切な家族や友人と、ただ火を囲み、言葉を交わす。<br>何もしないという贅沢が、ここにあります。</p>
+    <h2 class="section-title serif"><span class="nowrap">15年の眠りを経て、</span><span class="nowrap">再び</span></h2>
+    <p><span class="nowrap">1975年に開業し、</span><span class="nowrap">静かに眠りについていた場所が</span><br>今、伊豆大島の森の中で目を覚ましました。</p>
+    <p><span class="nowrap">豪華な設備はありません。</span><br><span class="nowrap">あるのは、鳥の声、風の音、</span><span class="nowrap">そして満天の星空。</span></p>
+    <p><span class="nowrap">大切な家族や友人と、</span><span class="nowrap">ただ火を囲み、言葉を交わす。</span><br><span class="nowrap">何もしないという贅沢が、</span>ここにあります。</p>
   </section>
 
   <section class="experience">
-    <h2 class="section-title serif">大島ニュービラでの過ごし方</h2>
+    <h2 class="section-title serif"><span class="nowrap">サルビア棟での</span><span class="nowrap">過ごし方</span></h2>
     
     <div class="visual-grid">
       <div class="visual-item">
-        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=800&auto=format&fit=crop" alt="4人部屋">
+        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=800&auto=format&fit=crop" alt="客室">
         <div class="visual-text">
           <h3 class="serif">静寂に包まれる空間</h3>
-          <p>4名様でゆったりと過ごせるリノベーション済みの客室。森の気配を感じながら、深い眠りへ。</p>
+          <p>リノベーション済みの清潔な客室。推奨4名様、ソファベッドのご利用で最大6名様までゆったりとご滞在いただけます。森の気配を感じながら、深い眠りへ。</p>
         </div>
       </div>
       <div class="visual-item">
         <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop" alt="屋外BBQ">
         <div class="visual-text">
           <h3 class="serif">森に溶け込む音と火</h3>
-          <p>外の炊事場ではBBQをお楽しみいただけます。専用のスピーカーから流れる音楽とともに、語らいの時間を。</p>
+          <p>外の炊事場ではBBQをお楽しみいただけます。JBLの専用スピーカーから流れる音楽とともに、夜空の下で語らいの時間を。</p>
         </div>
       </div>
     </div>
@@ -168,19 +168,20 @@
 
   <section class="info" style="padding-bottom: 120px;">
     <h2 class="section-title serif">施設概要</h2>
-    <p style="font-size: 0.95rem; color: var(--text-muted); text-align: left; display: inline-block;">
-      定員：1組4名様<br>
-      設備：屋外炊事場 / 無料Wi-Fi / 貸切BBQセット（JBLスピーカー付）<br>
-      ※大自然に囲まれた環境のため、華美なアメニティは控えております。
-    </p>
+    <div style="font-size: 0.95rem; color: var(--text-muted); text-align: left; display: inline-block; line-height: 2;">
+      <strong>施設名：</strong>大島ニュービラ（サルビア棟）<br>
+      <strong>定員：</strong>推奨4名様（最大6名様 ※ソファベッド利用）<br>
+      <strong>設備：</strong>屋外炊事場 / 無料Wi-Fi / 貸切BBQセット（JBLスピーカー付）<br>
+      <span style="font-size: 0.85rem; margin-top: 10px; display: inline-block;">※大自然に囲まれた環境のため、華美なアメニティは控えております。</span>
+    </div>
   </section>
 
   <div class="fixed-cta">
-    <a href="【ここにOTAの予約ページURLを入れる】" class="btn-reserve" target="_blank">空室を確認・予約する</a>
+    <a href="#" class="btn-reserve" target="_blank">空室を確認・予約する</a>
   </div>
 
   <footer>
-    <p>Oshima New Villa</p>
+    <p>Oshima New Villa - Salvia -</p>
     <p>© 2026 Oshima New Villa. All rights reserved.</p>
   </footer>
 
