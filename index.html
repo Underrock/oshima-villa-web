@@ -13,11 +13,11 @@
     :root {
       --primary: #2c4a3e;
       --bg-color: #f9f9f8;
-      --bg-alt: #f4f1eb; /* 追加：セクションを区切るための温かい背景色 */
+      --bg-alt: #f4f1eb;
       --text-main: #37352f;
       --text-muted: #555450;
       --accent: #d99a5a;
-      --border-color: #e2decb; /* 追加：上品な枠線用の色 */
+      --border-color: #e2decb;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -32,6 +32,17 @@
     h1, h2, h3 { font-weight: normal; letter-spacing: 0.1em; color: var(--primary); }
     .serif { font-family: "Shippori Mincho", serif; font-weight: 500; } 
 
+    /* --- Scroll Animation Classes --- */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* --- Hero Section --- */
     .hero {
       position: relative;
@@ -45,7 +56,6 @@
       color: #fff;
       overflow: hidden;
     }
-
     .hero-video {
       position: absolute;
       top: 0;
@@ -54,9 +64,8 @@
       height: 100%;
       object-fit: cover;
       z-index: 1;
-      filter: blur(1.5px) saturate(0.8);
+      filter: blur(1.5px) saturate(0.8) brightness(0.85);
     }
-
     .hero-overlay {
       position: absolute;
       top: 0;
@@ -66,20 +75,16 @@
       background-color: rgba(0, 0, 0, 0.35); 
       background-image: 
         url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60"><path d="M5 40 C10 25 25 25 30 35 C35 20 55 20 60 35 C65 25 80 25 90 35 C100 30 110 35 115 40" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" opacity="0.35"/></svg>'),
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 60"><path d="M5 42 C15 35 25 32 35 40 C45 25 65 25 70 38 C80 28 100 30 110 38 C120 35 130 38 135 42" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" opacity="0.32"/></svg>'),
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 50"><path d="M5 35 C12 28 20 28 25 33 C30 25 45 25 50 33 C60 28 70 30 80 35" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" opacity="0.25"/></svg>'),
         radial-gradient(rgba(255, 255, 255, 0.25) 15%, transparent 15%);
-      background-position: 10% 20%, 85% 70%, 80% 15%, 0 0;
-      background-size: 180px 90px, 220px 95px, 140px 78px, 3px 3px;
-      background-repeat: no-repeat, no-repeat, no-repeat, repeat;
+      background-position: 10% 20%, 0 0;
+      background-size: 180px 90px, 3px 3px;
+      background-repeat: no-repeat, repeat;
       z-index: 2;
     }
-
     .hero-content {
       position: relative;
       z-index: 3;
     }
-
     .hero h1 {
       font-size: 2.2rem;
       letter-spacing: 0.15em;
@@ -99,7 +104,6 @@
     .section-inner { max-width: 800px; margin: 0 auto; }
     .section-title { font-size: 1.6rem; margin-bottom: 40px; line-height: 1.5; }
     
-    /* 追加：視線を誘導する上品な縦線 */
     .vertical-line {
       width: 1px;
       height: 60px;
@@ -107,12 +111,10 @@
       margin: 0 auto 30px;
       opacity: 0.4;
     }
-
     .concept p { margin-bottom: 20px; font-size: 1rem; color: var(--text-muted); }
-
-    /* 追加：背景色を変えてのっぺり感を消す */
     .bg-tint { background-color: var(--bg-alt); }
 
+    /* --- Visual Grid (Experience) --- */
     .visual-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -124,6 +126,8 @@
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+      background: #fff;
+      text-align: left;
     }
     .visual-item img {
       width: 100%;
@@ -133,22 +137,54 @@
     }
     .visual-text {
       padding: 25px 20px;
-      background: #fff;
     }
     .visual-text h3 { font-size: 1.2rem; margin-bottom: 10px; }
-    .visual-text p { font-size: 0.9rem; color: var(--text-muted); text-align: left; }
+    .visual-text p { font-size: 0.9rem; color: var(--text-muted); }
 
     @media (min-width: 768px) {
       .visual-grid { grid-template-columns: 1fr 1fr; }
     }
 
-    /* 追加：施設概要をカード風に囲ってリッチに */
+    /* --- Facilities & Amenities --- */
+    .amenities-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    .amenity-tag {
+      background-color: #fff;
+      border: 1px solid var(--border-color);
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* --- Info Box --- */
     .info-box {
       border: 1px solid var(--border-color);
       padding: 40px 20px;
       border-radius: 8px;
       background-color: #fff;
       box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+      text-align: left;
+    }
+    .info-box dl {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    .info-box dt { font-weight: bold; color: var(--primary); border-bottom: 1px solid var(--border-color); padding-bottom: 5px;}
+    .info-box dd { margin-bottom: 10px; }
+
+    @media (min-width: 600px) {
+      .info-box dl { grid-template-columns: 120px 1fr; gap: 10px 20px; }
+      .info-box dt { border-bottom: none; padding-bottom: 0; }
+      .info-box dd { margin-bottom: 0; }
     }
 
     /* --- Fixed CTA Button --- */
@@ -175,15 +211,31 @@
       box-shadow: 0 10px 25px rgba(44, 74, 62, 0.5);
       transition: all 0.3s ease;
     }
+    .btn-reserve:hover {
+      background-color: #1f362d;
+      transform: translateY(-2px);
+    }
 
     /* --- Footer --- */
     footer {
       background-color: var(--primary);
       color: #fff;
       text-align: center;
-      padding: 60px 20px 100px; 
+      padding: 60px 20px 120px; 
     }
-    footer p { font-size: 0.8rem; letter-spacing: 0.1em; opacity: 0.7; margin-bottom: 10px; }
+    .sns-link {
+      display: inline-block;
+      color: #fff;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 10px 20px;
+      border-radius: 30px;
+      margin-bottom: 30px;
+      font-size: 0.9rem;
+      transition: background 0.3s;
+    }
+    .sns-link:hover { background: rgba(255,255,255,0.1); }
+    footer p { font-size: 0.8rem; letter-spacing: 0.1em; opacity: 0.7; margin-bottom: 5px; }
   </style>
 </head>
 <body>
@@ -191,67 +243,127 @@
   <header class="hero">
     <video class="hero-video" src="Bg-movie.mp4" autoplay loop muted playsinline></video>
     <div class="hero-overlay"></div>
-    <div class="hero-content">
+    <div class="hero-content fade-in">
       <h1 class="serif"><span class="nowrap">森と眠る、</span><span class="nowrap">心の再生</span></h1>
       <p>大島ニュービラ - サルビア棟 -</p>
     </div>
   </header>
 
   <section class="concept">
-    <div class="section-inner">
+    <div class="section-inner fade-in">
       <div class="vertical-line"></div>
-      <h2 class="section-title serif"><span class="nowrap">15年の眠りを経て、</span><span class="nowrap">再び</span></h2>
+      <h2 class="section-title serif"><span class="nowrap">1日1組限定の</span><br><span class="nowrap">プライベート空間</span></h2>
       <p><span class="nowrap">1975年に開業し、</span><span class="nowrap">静かに眠りについていた場所が</span><br>今、伊豆大島の森の中で目を覚ましました。</p>
-      <p><span class="nowrap">豪華な設備はありません。</span><br><span class="nowrap">あるのは、鳥の声、風の音、</span><span class="nowrap">そして満天の星空。</span></p>
+      <p><span class="nowrap">周囲に民家がない、森に囲まれた環境。</span><br><span class="nowrap">誰の目も、隣の音も気にする必要はありません。</span></p>
       <p><span class="nowrap">大切な家族や友人と、</span><span class="nowrap">ただ火を囲み、言葉を交わす。</span><br><span class="nowrap">何もしないという贅沢が、</span>ここにあります。</p>
     </div>
   </section>
 
   <section class="experience bg-tint">
     <div class="section-inner">
-      <h2 class="section-title serif"><span class="nowrap">サルビア棟での</span><span class="nowrap">過ごし方</span></h2>
+      <h2 class="section-title serif fade-in"><span class="nowrap">サルビア棟での</span><span class="nowrap">過ごし方</span></h2>
       
       <div class="visual-grid">
-        <div class="visual-item">
+        <div class="visual-item fade-in">
           <img src="living_image.png" alt="客室">
           <div class="visual-text">
-            <h3 class="serif">静寂に包まれる空間</h3>
-            <p>リノベーション済みの清潔な客室。推奨4名様、ソファベッドのご利用で最大6名様までゆったりとご滞在いただけます。森の気配を感じながら、深い眠りへ。</p>
+            <h3 class="serif">静寂と快適の融合</h3>
+            <p>リノベーション済みの清潔な客室。事前の遠隔空調（IoT）により、到着した瞬間から快適にお過ごしいただけます。</p>
           </div>
         </div>
-        <div class="visual-item">
+        <div class="visual-item fade-in">
           <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop" alt="屋外BBQ">
           <div class="visual-text">
-            <h3 class="serif">森に溶け込む音と火</h3>
-            <p>外の炊事場ではBBQをお楽しみいただけます。ポータブルスピーカーから流れる音楽とともに、夜空の下で語らいの時間を。</p>
+            <h3 class="serif">星空の下でBBQ</h3>
+            <p>併設の「ガゼボ庵」では、風を避けながら穏やかに火を囲めます。大島の地魚やサザエを買い込んで、自分たちだけの宴を。</p>
+          </div>
+        </div>
+        <div class="visual-item fade-in">
+          <img src="bath_image.png" alt="レトロ風呂" onerror="this.src='https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop'">
+          <div class="visual-text">
+            <h3 class="serif">ノスタルジックなバスタイム</h3>
+            <p>昭和の面影を残す、水色のタイル張りが可愛い広々としたお風呂が大好評。非日常のエモい時間をお楽しみください。</p>
+          </div>
+        </div>
+        <div class="visual-item fade-in">
+          <img src="amenity_image.png" alt="アメニティ" onerror="this.src='https://images.unsplash.com/photo-1565538810643-b5bdb714032a?q=80&w=800&auto=format&fit=crop'">
+          <div class="visual-text">
+            <h3 class="serif">安心の「おこもり」設備</h3>
+            <p>厚底のEVAスリッパ、全水回りのオートディスペンサー、万全の虫対策キットなど、森の中でもストレスなく過ごせる工夫を散りばめました。</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="info" style="padding-bottom: 120px;">
-    <div class="section-inner">
+  <section class="info" style="padding-bottom: 80px;">
+    <div class="section-inner fade-in">
+      <h2 class="section-title serif">施設概要・設備</h2>
       <div class="info-box">
-        <h2 class="section-title serif" style="margin-bottom: 25px;">施設概要</h2>
-        <div style="font-size: 0.95rem; color: var(--text-muted); text-align: left; display: inline-block; line-height: 2;">
-          <strong>施設名：</strong>大島ニュービラ（サルビア棟）<br>
-          <strong>定員：</strong>推奨4名様（最大6名様 ※ソファベッド利用）<br>
-          <strong>設備：</strong>屋外炊事場 / 無料Wi-Fi / 貸切BBQセット（食材お持ち込み）（貸し出しポータブルスピーカー付）<br>
-          <span style="font-size: 0.85rem; margin-top: 15px; display: inline-block; padding-top: 15px; border-top: 1px dashed var(--border-color);">※大自然に囲まれた環境のため、華美なアメニティは控えております。</span>
-        </div>
+        <dl>
+          <dt>施設名</dt>
+          <dd>大島ニュービラ（サルビア棟）</dd>
+          
+          <dt>定員</dt>
+          <dd>推奨4名様（ソファベッドご利用で最大6名様）</dd>
+          
+          <dt>チェックイン</dt>
+          <dd>非接触の無人セルフチェックイン</dd>
+
+          <dt>BBQ設備</dt>
+          <dd>屋外炊事場（ガゼボ庵）/ 洗浄済みBBQコンロ / 網・プレート / 折りたたみテーブル / 持ち出しセット<br><small>※食材・炭はお客様にてご用意（お持ち込み）をお願いいたします。</small></dd>
+
+          <dt>主なアメニティ</dt>
+          <dd>
+            <div class="amenities-list" style="justify-content: flex-start; margin-top: 5px;">
+              <span class="amenity-tag">無料Wi-Fi</span>
+              <span class="amenity-tag">冷暖房（IoT完備）</span>
+              <span class="amenity-tag">虫対策キット</span>
+              <span class="amenity-tag">コーヒー・緑茶</span>
+              <span class="amenity-tag">水洗い可能スリッパ</span>
+            </div>
+          </dd>
+        </dl>
       </div>
     </div>
   </section>
 
   <div class="fixed-cta">
-    <a href="https://www.airbnb.jp/rooms/1602063410123886296?guests=1&adults=1&s=67&unique_share_id=14cfd945-be5d-4ae1-af4f-f2210d19e2ae" class="btn-reserve" target="_blank" rel="noopener noreferrer">空室を確認・予約する(Airbnb)</a>
+    <a href="https://www.airbnb.jp/rooms/1602063410123886296?guests=1&adults=1&s=67&unique_share_id=14cfd945-be5d-4ae1-af4f-f2210d19e2ae" class="btn-reserve" target="_blank" rel="noopener noreferrer">空室を確認・予約する (Airbnb)</a>
   </div>
 
   <footer>
-    <p>Oshima New Villa - Salvia -</p>
-    <p>© 2026 Oshima New Villa. All rights reserved.</p>
+    <div class="fade-in">
+      <a href="https://www.instagram.com/oshima_new_villa/" class="sns-link" target="_blank" rel="noopener noreferrer">
+        📷 Instagramで最新情報を見る
+      </a>
+      <p>Oshima New Villa - Salvia -</p>
+      <p>© 2026 Oshima New Villa. All rights reserved.</p>
+    </div>
   </footer>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.15
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      const fadeElements = document.querySelectorAll(".fade-in");
+      fadeElements.forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
 </body>
 </html>
